@@ -65,10 +65,10 @@ php artisan serve
 ```
 
 ## Application Flow
-- **User Input**: The user visits the weather form page (/weather-form), enters a city name, and submits the form.
+- **User Input**: The user visits the weather form page, enters a city name, and submits the form.
 - **Weather Fetching**: The application sends a request to the OpenWeather API, retrieves the weather data, and formats it.
 - **Weather Display**: The user is redirected to a new page displaying the current weather data of the city entered.
-- **Error Handling**: If the weather data cannot be fetched or any error occurs during the process, the user is redirected to a custom error page (/weather-error).
+- **Error Handling**: If the weather data cannot be fetched or any error occurs during the process, the user is redirected to a custom error page.
 
 ## Architecture
 - **WeatherController**: Manages incoming requests and generates appropriate responses.
