@@ -1,66 +1,111 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Weather Application - Documentation
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
+The **Weather Application** is a Laravel-based project that allows users to retrieve real-time weather data for any city using the OpenWeather API. It demonstrates clean code practices, error handling, and the use of a service interface.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
+- Fetches real-time weather data including:
+  - Temperature
+  - Feels Like Temperature
+  - Minimum and Maximum Temperatures
+  - Humidity
+  - Weather Description
+  - Wind Speed
+- Simple and user-friendly interface.
+- Custom error handling with a dedicated error page.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Prerequisites
+Ensure the following are installed on your system:
+- PHP (>= 7.2.5)
+- Composer
+- Laravel Framework
+- OpenWeather API Key (Sign up at [OpenWeather](https://openweathermap.org/) to get a free API key)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Installation Guide
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 1. Clone the Repository
+```bash
+git clone <repository_url>
+cd <repository_folder>
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2. Install Dependencies
+```bash
+cd weather-app
+composer install
+```
 
-## Laravel Sponsors
+### 3. Set up Environment Variables
+The application requires an API key for the OpenWeather API. You'll need to register on OpenWeather and get your own API key.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Create a .env file in the root directory of the project (if not already present) by copying from the .env.example:
+```bash
+cp .env.example .env
+```
 
-### Premium Partners
+- Open the .env file and add this OpenWeather API key:
+```bash
+OPENWEATHER_API_KEY=22a94d325e94c6ead62cbc487fcc9bc9
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 4. Generate Application Key
+```bash
+php artisan key:generate
+```
 
-## Contributing
+### 5. Run the Application
+```bash
+php artisan serve
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Application Flow
+- **User Input**: The user visits the weather form page, enters a city name, and submits the form.
+- **Weather Fetching**: The application sends a request to the OpenWeather API, retrieves the weather data, and formats it.
+- **Weather Display**: The user is redirected to a new page displaying the current weather data of the city entered.
+- **Error Handling**: If the weather data cannot be fetched or any error occurs during the process, the user is redirected to a custom error page.
 
-## Code of Conduct
+## Architecture
+- **WeatherController**: Manages incoming requests and generates appropriate responses.
+- **WeatherService**: Handles the logic to fetch weather data from the OpenWeather API.
+- **WeatherServiceInterface**: Defines the contract that the `WeatherService` class must follow.
+- **Views**: The user interface component responsible for gathering input and displaying results.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Directory Structure
 
-## Security Vulnerabilities
+```bash
+app/
+├── Contracts/
+│   └── WeatherServiceInterface.php
+├── Http/
+│   └── Controllers/
+│       └── WeatherController.php
+├── Services/
+│   └── WeatherService.php
+resources/
+├── views/
+│   ├── weather-form.blade.php
+│   ├── weather-display.blade.php
+│   └── weather-error.blade.php
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Validation
+*Client-Side Validation* :
+To enhance the user experience, a JavaScript validation is applied to the city name input field on the weather form page. This ensures that the city name entered by the user does not contain numeric values or special characters. If the city name is invalid, a pop-up message with "Invalid City Name" is displayed.
 
-## License
+*Server-Side Validation* :
+Server-side validation is also implemented to ensure that the city name adheres to specific rules before it is processed. The city name must contain only alphabetic characters and spaces. This validation is performed in the WeatherController.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Error Handling
+If an error occurs during the weather-fetching process, the user will be redirected to a custom error page (weather-error). The error page provides feedback to the user and suggests retrying.
+
+## Additional Notes
+- Make sure the OpenWeather API key is valid and correctly set in your .env file.
+- The application uses Laravel's built-in validation to ensure the city name is properly entered.
+- The app has a clean, minimalist black-and-white UI theme.
+
