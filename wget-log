@@ -1,0 +1,3 @@
+--2024-12-05 17:14:24--  https://api.openweathermap.org/data/2.5/weather?q=London
+Resolving api.openweathermap.org (api.openweathermap.org)... 15.235.222.68
+Connecting to api.openweathermap.org (api.openweathermap.org)|15.235.222.68|:443... failed: Network is unreachable.
