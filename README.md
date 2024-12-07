@@ -94,10 +94,10 @@ resources/
 │   └── weather-error.blade.php
 ```
 
-##Error Handling
+## Error Handling
 If an error occurs during the weather-fetching process, the user will be redirected to a custom error page (weather-error). The error page provides feedback to the user and suggests retrying.
 
-##Additional Notes
+## Additional Notes
 - Make sure the OpenWeather API key is valid and correctly set in your .env file.
 - The application uses Laravel's built-in validation to ensure the city name is properly entered.
 - The app has a clean, minimalist black-and-white UI theme.
