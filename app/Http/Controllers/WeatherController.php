@@ -39,13 +39,15 @@ class WeatherController extends Controller {
     public function fetchWeather(Request $request): View|RedirectResponse
     {
         try {
-            // Validate the incoming request for 'city' input
-            Log::info('Validating request for city input.');
-            $request->validate(['city' => 'required|string|max:255']);
+            // Validate that the city name contains only letters and spaces
+            $request->validate([
+                'city' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
+            ], [
+                'city.regex' => 'Invalid City Name. Please enter a valid city name with only letters and spaces.',
+            ]);
 
-            // Fetch weather data from the service
+            // Fetch weather data using the service
             $city = $request->input('city');
-            Log::info("Fetching weather data for city: $city");
             $weatherData = $this->weatherService->fetchWeather($city);
 
             // Check if weather data is empty or invalid
