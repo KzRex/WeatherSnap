@@ -94,6 +94,13 @@ resources/
 │   └── weather-error.blade.php
 ```
 
+## Validation
+*Client-Side Validation* :
+To enhance the user experience, a JavaScript validation is applied to the city name input field on the weather form page. This ensures that the city name entered by the user does not contain numeric values or special characters. If the city name is invalid, a pop-up message with "Invalid City Name" is displayed.
+
+*Server-Side Validation* :
+Server-side validation is also implemented to ensure that the city name adheres to specific rules before it is processed. The city name must contain only alphabetic characters and spaces. This validation is performed in the WeatherController.
+
 ## Error Handling
 If an error occurs during the weather-fetching process, the user will be redirected to a custom error page (weather-error). The error page provides feedback to the user and suggests retrying.
 
